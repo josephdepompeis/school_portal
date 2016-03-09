@@ -1,6 +1,6 @@
 class TeachersController < ApplicationController
   before_action :set_teacher, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate
   # GET /teachers
   # GET /teachers.json
   def index
@@ -71,4 +71,6 @@ class TeachersController < ApplicationController
     def teacher_params
       params.require(:teacher).permit(:first, :last)
     end
+
+
 end

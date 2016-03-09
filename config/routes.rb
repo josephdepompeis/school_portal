@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
+  get 'authenticate/login'
+  post 'authenticate/login'
+  get 'authenticate/logout'
+
+
+
+
   namespace :admin do
-    
+
     root to: "#index"
   end
 

@@ -4,12 +4,8 @@ Rails.application.routes.draw do
   get 'authenticate/logout'
 
 
+  root 'teachers#index'
 
-
-  namespace :admin do
-
-    root to: "#index"
-  end
 
   resources :users
   resources :grades

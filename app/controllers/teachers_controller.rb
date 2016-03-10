@@ -1,6 +1,7 @@
 class TeachersController < ApplicationController
   before_action :set_teacher, only: [:show, :edit, :update, :destroy]
   before_action :authenticate
+  before_action :authenticate_teacher
   # GET /teachers
   # GET /teachers.json
   def index
@@ -29,10 +30,8 @@ class TeachersController < ApplicationController
     respond_to do |format|
       if @teacher.save
         format.html { redirect_to @teacher, notice: 'Teacher was successfully created.' }
-        format.json { render :show, status: :created, location: @teacher }
       else
         format.html { render :new }
-        format.json { render json: @teacher.errors, status: :unprocessable_entity }
       end
     end
   end

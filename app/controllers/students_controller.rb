@@ -1,10 +1,13 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
   before_action :authenticate
+  # before_action :authenticate_student_belongs_to_parent_teacher
+
   # GET /students
   # GET /students.json
   def index
-    @students = Student.all
+
+    @students = Student.where(teacher_id: session[:teacher_id])
   end
 
   # GET /students/1
@@ -19,6 +22,8 @@ class StudentsController < ApplicationController
 
   # GET /students/1/edit
   def edit
+
+
   end
 
   # POST /students
@@ -65,6 +70,9 @@ class StudentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_student
       @student = Student.find(params[:id])
+      if @student.teacher_id == session[:teacher_id]
+      else redirect_to students_url, notice: "You are not qualified to view or do that!"
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
